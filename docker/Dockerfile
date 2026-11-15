@@ -45,7 +45,7 @@ FROM base AS bridge
 ARG ROS_DISTRO
 ARG FOXGLOVE_SDK_REPO=https://github.com/BenniRip/foxglove-sdk.git
 # Commit of the bridge with the channel source plugin API (BenniRip/foxglove-sdk#3).
-ARG FOXGLOVE_SDK_REF=8ce55ea2efc38dfc21badf3e588b4285599218e8
+ARG FOXGLOVE_SDK_REF=1f52ea81302a46bc0253a39db8d9cdac463a1e6a
 RUN git init -q /tmp/foxglove-sdk \
     && git -C /tmp/foxglove-sdk fetch -q --depth 1 ${FOXGLOVE_SDK_REPO} ${FOXGLOVE_SDK_REF} \
     && git -C /tmp/foxglove-sdk checkout -q FETCH_HEAD \
