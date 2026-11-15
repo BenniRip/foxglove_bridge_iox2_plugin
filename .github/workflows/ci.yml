@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+
+jobs:
+  build-test-package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        ros_distro: [jazzy]
+    name: "build, test and package (${{ matrix.ros_distro }})"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: docker/setup-buildx-action@v4
+
+      # The layer cache skips rebuilding iceoryx2 and the bridge.
+      - name: Build, test and package
+        uses: docker/bake-action@v7
+        env:
+          ROS_DISTRO: ${{ matrix.ros_distro }}
+        with:
+          source: .
+          set: |
+            *.cache-from=type=gha,scope=${{ matrix.ros_distro }}
+            *.cache-to=type=gha,mode=max,scope=${{ matrix.ros_distro }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: debs-${{ matrix.ros_distro }}
+          path: dist/*.deb

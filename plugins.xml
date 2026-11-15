@@ -1,0 +1,6 @@
+<library path="foxglove_bridge_iox2_plugin">
+  <class type="foxglove_bridge_iox2_plugin::Iox2Source"
+         base_class_type="foxglove_bridge::ChannelSourcePlugin">
+    <description>Serves iceoryx2 FlatBuffer publish-subscribe services as Foxglove channels.</description>
+  </class>
+</library>

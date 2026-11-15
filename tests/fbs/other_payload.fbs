@@ -1,0 +1,8 @@
+namespace foxglove_bridge_iox2_plugin.test;
+
+// A different schema than test_payload.fbs, used to provoke a schema mismatch.
+table OtherPayload {
+  value: float64;
+}
+
+root_type OtherPayload;

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="3">
+    <name>foxglove_bridge_iox2_plugin</name>
+    <version>0.1.0</version>
+    <description>
+        foxglove_bridge channel source plugin that serves iceoryx2 FlatBuffer services over the
+        bridge's WebSocket server, alongside ROS data.
+    </description>
+    <license>MIT</license>
+    <maintainer email="201615644+BenniRip@users.noreply.github.com">Benjamin Rippel</maintainer>
+
+    <buildtool_depend>ament_cmake</buildtool_depend>
+
+    <!-- Plugins only load into the bridge release they were built against. -->
+    <depend version_eq="3.6.3">foxglove_bridge</depend>
+    <depend>pluginlib</depend>
+    <depend>rclcpp</depend>
+
+    <!-- iceoryx2-cxx comes from the environment, not rosdep; see README.md. -->
+
+    <test_depend>ament_cmake_gtest</test_depend>
+    <test_depend>asio</test_depend>
+    <test_depend>class_loader</test_depend>
+    <test_depend>libwebsocketpp-dev</test_depend>
+    <test_depend>nlohmann-json-dev</test_depend>
+    <test_depend>rosgraph_msgs</test_depend>
+
+    <export>
+        <build_type>ament_cmake</build_type>
+    </export>
+</package>

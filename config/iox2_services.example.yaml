@@ -1,0 +1,22 @@
+#   ros2 run foxglove_bridge foxglove_bridge --ros-args --params-file iox2_services.example.yaml
+#
+# One plugin instance named "iox2". Index i of the four lists describes one service.
+/**:
+  ros__parameters:
+    channel_source_plugins: ["iox2"]
+    iox2:
+      plugin: "foxglove_bridge_iox2_plugin::Iox2Source"
+      # Shared with the publishers; empty uses iceoryx2's default.
+      config_file: ""
+      # Publishers must register byte-identical .bfbs files.
+      schema_dir: "/path/to/bfbs"
+      # Services with iox2::Flatbuffer<T> payloads.
+      service_names: ["/lidar/points"]
+      topics: ["/lidar/points"]
+      # Fully qualified root tables; the app recognizes foxglove.* schemas.
+      schema_names: ["foxglove.PointCloud"]
+      # Relative to schema_dir.
+      bfbs_files: ["PointCloud.bfbs"]
+      poll_interval_ms: 10
+      # Also bridge services without safe overflow; their publishers may block on a slow bridge.
+      allow_blocking_publishers: false

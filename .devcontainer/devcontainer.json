@@ -1,0 +1,15 @@
+{
+  "name": "foxglove_bridge_iox2_plugin",
+  "build": {
+    "dockerfile": "../docker/Dockerfile",
+    "context": "..",
+    "target": "dev"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/ws/src/foxglove_bridge_iox2_plugin,type=bind",
+  "workspaceFolder": "/ws/src/foxglove_bridge_iox2_plugin",
+  "remoteUser": "ubuntu",
+  // iceoryx2 needs more shared memory than Docker's 64 MB default.
+  "runArgs": ["--shm-size=1g"],
+  // compile_commands.json for clangd.
+  "containerEnv": { "CMAKE_EXPORT_COMPILE_COMMANDS": "ON" }
+}

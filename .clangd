@@ -1,0 +1,3 @@
+# Where colcon writes compile_commands.json in the devcontainer.
+CompileFlags:
+  CompilationDatabase: /ws/build/foxglove_bridge_iox2_plugin

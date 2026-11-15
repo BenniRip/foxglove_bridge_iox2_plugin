@@ -1,0 +1,8 @@
+namespace foxglove_bridge_iox2_plugin.test;
+
+table TestPayload {
+  seq: uint32;
+  data: [ubyte];
+}
+
+root_type TestPayload;
